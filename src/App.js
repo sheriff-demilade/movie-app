@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import AddMovie from "./components/AddMovie";
 import Filter from "./components/Filter";
@@ -9,10 +9,13 @@ function App() {
   const [movies, setMovies] = useState(moviePlaceholder);
   const [filteredMovies, setFilteredMovies] = useState(movies);
 
+  useEffect(() => {
+    setFilteredMovies(movies);
+  }, [movies]);
+
   // This function add a new movie from AddMovie component input form
   const addNewMovie = (newMovie) => {
     setMovies([...movies, newMovie]);
-    setFilteredMovies(movies);
   };
 
   // This function get title and rating from Filter component input form then filter the movies state array into filteredMovies
